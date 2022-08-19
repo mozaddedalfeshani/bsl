@@ -14,7 +14,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home"),
+        title: const Text("Basic Shirts Ltd"),
         actions: [
           IconButton(
             onPressed: () {
@@ -23,6 +23,16 @@ class _HomePageState extends State<HomePage> {
             icon: const Icon(Icons.wb_sunny_outlined),
           ),
         ],
+      ),
+      body: Container(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(),
+            Container(),
+            Container(),
+          ],
+        ),
       ),
       bottomNavigationBar: Align(
         alignment: Alignment.bottomCenter,
