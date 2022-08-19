@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
                 )),
             darkTheme: ThemeData(
                 useMaterial3: true,
-                colorSchemeSeed: Colors.red,
+                colorSchemeSeed: Colors.blue,
                 brightness: Brightness.dark,
                 appBarTheme: const AppBarTheme(
                   centerTitle: true,
