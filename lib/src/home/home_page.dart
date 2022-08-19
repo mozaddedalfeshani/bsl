@@ -1,3 +1,4 @@
+import 'package:bsl/src/home/home_view.dart';
 import 'package:bsl/src/settings/settings_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,23 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Basic Shirts Ltd"),
+        title: RichText(
+          text: TextSpan(
+            text: "BASIC",
+            children: [
+              TextSpan(
+                text: "\nBASIC SHIRTS LTD",
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
+              ),
+            ],
+            style: const TextStyle(
+              color: Colors.red,
+              fontSize: 22,
+            ),
+          ),
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -24,13 +41,9 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          // Container(),
-          // Container(),
-          // Container(),
-        ],
+      body: const Padding(
+        padding: EdgeInsets.all(50),
+        child: HomeView(),
       ),
       bottomNavigationBar: IntrinsicHeight(
         child: Align(
@@ -40,8 +53,6 @@ class _HomePageState extends State<HomePage> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
-                color: Colors.transparent,
-                shadowColor: Colors.transparent,
                 shape: const StadiumBorder(),
                 elevation: 10,
                 child: BottomNavigationBar(
