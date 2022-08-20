@@ -1,3 +1,4 @@
+import 'package:bsl/src/clients/clients_view.dart';
 import 'package:bsl/src/home/home_view.dart';
 import 'package:bsl/src/settings/settings_controller.dart';
 import 'package:flutter/material.dart';
@@ -41,9 +42,16 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: const Padding(
-        padding: EdgeInsets.only(top: 25, left: 25, right: 25, bottom: 85),
-        child: HomeView(),
+      body: Padding(
+        padding:
+            const EdgeInsets.only(top: 25, left: 25, right: 25, bottom: 85),
+        child: [
+          const HomeView(),
+          const ClientsView(),
+          const HomeView(),
+          const ClientsView(),
+          const HomeView(),
+        ][_currentIndex],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: IntrinsicHeight(
@@ -75,9 +83,9 @@ class _HomePageState extends State<HomePage> {
                         label: "Home",
                       ),
                       NavigationDestination(
-                        icon: Icon(Icons.info_outline),
-                        selectedIcon: Icon(Icons.info),
-                        label: "About",
+                        icon: Icon(Icons.people_outline),
+                        selectedIcon: Icon(Icons.people),
+                        label: "Clients",
                       ),
                       NavigationDestination(
                         icon: Icon(Icons.shopping_cart_outlined),
