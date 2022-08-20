@@ -63,47 +63,41 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.all(8.0),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15),
-                child: NavigationBarTheme(
-                  data: const NavigationBarThemeData(
-                      // indicatorColor:
-                      // Theme.of(context).colorScheme.primaryContainer,
-                      ),
-                  child: NavigationBar(
-                    selectedIndex: _currentIndex,
-                    onDestinationSelected: (value) {
-                      setState(() {
-                        _currentIndex = value;
-                      });
-                    },
-                    height: 70,
-                    destinations: const [
-                      NavigationDestination(
-                        icon: Icon(Icons.home_outlined),
-                        selectedIcon: Icon(Icons.home),
-                        label: "Home",
-                      ),
-                      NavigationDestination(
-                        icon: Icon(Icons.people_outline),
-                        selectedIcon: Icon(Icons.people),
-                        label: "Clients",
-                      ),
-                      NavigationDestination(
-                        icon: Icon(Icons.shopping_cart_outlined),
-                        selectedIcon: Icon(Icons.shopping_cart),
-                        label: "Products",
-                      ),
-                      NavigationDestination(
-                        icon: Icon(Icons.pages_outlined),
-                        selectedIcon: Icon(Icons.pages),
-                        label: "Objective",
-                      ),
-                      NavigationDestination(
-                        icon: Icon(Icons.contact_phone_outlined),
-                        selectedIcon: Icon(Icons.contact_phone),
-                        label: "Contact us",
-                      ),
-                    ],
-                  ),
+                child: NavigationBar(
+                  selectedIndex: _currentIndex,
+                  onDestinationSelected: (value) {
+                    setState(() {
+                      _currentIndex = value;
+                    });
+                  },
+                  height: 70,
+                  destinations: const [
+                    NavigationDestination(
+                      icon: Icon(Icons.home_outlined),
+                      selectedIcon: Icon(Icons.home),
+                      label: "Home",
+                    ),
+                    NavigationDestination(
+                      icon: Icon(Icons.people_outline),
+                      selectedIcon: Icon(Icons.people),
+                      label: "Clients",
+                    ),
+                    NavigationDestination(
+                      icon: Icon(Icons.shopping_cart_outlined),
+                      selectedIcon: Icon(Icons.shopping_cart),
+                      label: "Products",
+                    ),
+                    NavigationDestination(
+                      icon: Icon(Icons.pages_outlined),
+                      selectedIcon: Icon(Icons.pages),
+                      label: "Objective",
+                    ),
+                    NavigationDestination(
+                      icon: Icon(Icons.contact_phone_outlined),
+                      selectedIcon: Icon(Icons.contact_phone),
+                      label: "Contact us",
+                    ),
+                  ],
                 ),
               ),
             ),

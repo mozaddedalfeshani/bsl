@@ -12,6 +12,7 @@ class ClientsView extends StatelessWidget {
           padding: const EdgeInsets.all(10),
           child: SingleChildScrollView(
             child: Wrap(
+              // All list of clients logos file name will be here.
               children: const [
                 "lefties.jpeg",
                 "zara.jpeg",
@@ -36,71 +37,6 @@ class ClientsView extends StatelessWidget {
                   ),
                 );
               }).toList(),
-              // children: [
-              //   SizedBox(
-              //     height: 90,
-              //     width: 90,
-              //     child: Card(
-              //       elevation: 20,
-              //     ),
-              //   ),
-              //   SizedBox(
-              //     height: 90,
-              //     width: 90,
-              //     child: Card(
-              //       elevation: 20,
-              //     ),
-              //   ),
-              //   SizedBox(
-              //     height: 90,
-              //     width: 90,
-              //     child: Card(
-              //       elevation: 20,
-              //     ),
-              //   ),
-              //   SizedBox(
-              //     height: 90,
-              //     width: 90,
-              //     child: Card(
-              //       elevation: 20,
-              //     ),
-              //   ),
-              //   SizedBox(
-              //     height: 90,
-              //     width: 90,
-              //     child: Card(
-              //       elevation: 20,
-              //     ),
-              //   ),
-              //   SizedBox(
-              //     height: 90,
-              //     width: 90,
-              //     child: Card(
-              //       elevation: 20,
-              //     ),
-              //   ),
-              //   SizedBox(
-              //     height: 90,
-              //     width: 90,
-              //     child: Card(
-              //       elevation: 20,
-              //     ),
-              //   ),
-              //   SizedBox(
-              //     height: 90,
-              //     width: 90,
-              //     child: Card(
-              //       elevation: 20,
-              //     ),
-              //   ),
-              //   SizedBox(
-              //     height: 90,
-              //     width: 90,
-              //     child: Card(
-              //       elevation: 20,
-              //     ),
-              //   ),
-              // ],
             ),
           ),
         ),
