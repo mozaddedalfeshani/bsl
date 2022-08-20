@@ -42,61 +42,60 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: const Padding(
-        padding: EdgeInsets.all(50),
+        padding: EdgeInsets.only(top: 25, left: 25, right: 25, bottom: 85),
         child: HomeView(),
       ),
-      bottomNavigationBar: IntrinsicHeight(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: IntrinsicHeight(
         child: Align(
           alignment: Alignment.bottomCenter,
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 560),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Card(
-                shape: const StadiumBorder(),
-                elevation: 10,
-                child: BottomNavigationBar(
-                  backgroundColor: Colors.transparent,
-                  currentIndex: _currentIndex,
-                  selectedItemColor: Theme.of(context).colorScheme.primary,
-                  unselectedItemColor: Theme.of(context).colorScheme.onSurface,
-                  onTap: (value) {
-                    setState(() {
-                      _currentIndex = value;
-                    });
-                  },
-                  items: const [
-                    BottomNavigationBarItem(
-                      backgroundColor: Colors.transparent,
-                      icon: Icon(Icons.home_outlined),
-                      // selectedIcon: Icon(Icons.home),
-                      label: "Home",
-                    ),
-                    BottomNavigationBarItem(
-                      backgroundColor: Colors.transparent,
-                      icon: Icon(Icons.info_outline),
-                      // selectedIcon: Icon(Icons.info),
-                      label: "About",
-                    ),
-                    BottomNavigationBarItem(
-                      backgroundColor: Colors.transparent,
-                      icon: Icon(Icons.shopping_cart_outlined),
-                      // selectedIcon: Icon(Icons.shopping_cart),
-                      label: "Products",
-                    ),
-                    BottomNavigationBarItem(
-                      backgroundColor: Colors.transparent,
-                      icon: Icon(Icons.pages_outlined),
-                      // selectedIcon: Icon(Icons.pages),
-                      label: "Objective",
-                    ),
-                    BottomNavigationBarItem(
-                      backgroundColor: Colors.transparent,
-                      icon: Icon(Icons.contact_phone_outlined),
-                      // selectedIcon: Icon(Icons.contact_phone),
-                      label: "Contact us",
-                    ),
-                  ],
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: NavigationBarTheme(
+                  data: const NavigationBarThemeData(
+                      // indicatorColor:
+                      // Theme.of(context).colorScheme.primaryContainer,
+                      ),
+                  child: NavigationBar(
+                    selectedIndex: _currentIndex,
+                    onDestinationSelected: (value) {
+                      setState(() {
+                        _currentIndex = value;
+                      });
+                    },
+                    height: 70,
+                    destinations: const [
+                      NavigationDestination(
+                        icon: Icon(Icons.home_outlined),
+                        selectedIcon: Icon(Icons.home),
+                        label: "Home",
+                      ),
+                      NavigationDestination(
+                        icon: Icon(Icons.info_outline),
+                        selectedIcon: Icon(Icons.info),
+                        label: "About",
+                      ),
+                      NavigationDestination(
+                        icon: Icon(Icons.shopping_cart_outlined),
+                        selectedIcon: Icon(Icons.shopping_cart),
+                        label: "Products",
+                      ),
+                      NavigationDestination(
+                        icon: Icon(Icons.pages_outlined),
+                        selectedIcon: Icon(Icons.pages),
+                        label: "Objective",
+                      ),
+                      NavigationDestination(
+                        icon: Icon(Icons.contact_phone_outlined),
+                        selectedIcon: Icon(Icons.contact_phone),
+                        label: "Contact us",
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
