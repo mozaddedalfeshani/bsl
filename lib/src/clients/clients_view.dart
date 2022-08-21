@@ -14,8 +14,14 @@ class ClientsView extends StatelessWidget {
             child: Wrap(
               // All list of clients logos file name will be here.
               children: const [
-                "lefties.jpeg",
                 "zara.jpeg",
+                "mango.jpeg",
+                "john_lewis.png",
+                "tn.png",
+                "D&G.jpeg",
+                "JAJU.png",
+                "P_E.png",
+                "lefties.jpeg",
               ].map<Widget>((e) {
                 return IntrinsicWidth(
                   child: SizedBox(
