@@ -1,5 +1,8 @@
 import 'package:bsl/src/clients/clients_view.dart';
+import 'package:bsl/src/contuct_us/contact_us_view.dart';
 import 'package:bsl/src/home/home_view.dart';
+import 'package:bsl/src/objective/objective_view.dart';
+import 'package:bsl/src/products/products_view.dart';
 import 'package:bsl/src/settings/settings_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -45,13 +48,18 @@ class _HomePageState extends State<HomePage> {
       body: Padding(
         padding:
             const EdgeInsets.only(top: 25, left: 25, right: 25, bottom: 85),
-        child: [
-          const HomeView(),
-          const ClientsView(),
-          const HomeView(),
-          const ClientsView(),
-          const HomeView(),
-        ][_currentIndex],
+        child: SizedBox.expand(
+          child: Card(
+            elevation: 10,
+            child: const [
+              HomeView(),
+              ClientsView(),
+              ProductsView(),
+              ObjectiveView(),
+              ContactUsView(),
+            ][_currentIndex],
+          ),
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: IntrinsicHeight(

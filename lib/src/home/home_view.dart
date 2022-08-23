@@ -12,62 +12,57 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: LayoutBuilder(builder: (context, constrains) {
-        return Card(
-          elevation: 10,
-          child: ListView(
-            children: [
-              ConstrainedBox(
-                constraints: BoxConstraints(
-                    maxHeight: (constrains.maxWidth < constrains.maxHeight)
-                        ? constrains.maxWidth
-                        : constrains.maxHeight * 0.60),
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Stack(
+    return LayoutBuilder(builder: (context, constrains) {
+      return ListView(
+        children: [
+          ConstrainedBox(
+            constraints: BoxConstraints(
+                maxHeight: (constrains.maxWidth < constrains.maxHeight)
+                    ? constrains.maxWidth
+                    : constrains.maxHeight * 0.60),
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Stack(
+                children: [
+                  PageView(
+                    controller: _pageViewController,
                     children: [
-                      PageView(
-                        controller: _pageViewController,
-                        children: [
-                          Image.asset(
-                            "assets/road-1072821__480.jpg",
-                            fit: BoxFit.cover,
-                          ),
-                          Image.asset(
-                            "assets/download.jpg",
-                            fit: BoxFit.cover,
-                          ),
-                        ],
+                      Image.asset(
+                        "assets/road-1072821__480.jpg",
+                        fit: BoxFit.cover,
                       ),
-                      Positioned(
-                        bottom: 3,
-                        left: 0,
-                        right: 0,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SliderButton(
-                              totalPages: 2,
-                              pageViewController: _pageViewController,
-                            ),
-                          ],
-                        ),
+                      Image.asset(
+                        "assets/download.jpg",
+                        fit: BoxFit.cover,
                       ),
                     ],
                   ),
-                ),
+                  Positioned(
+                    bottom: 3,
+                    left: 0,
+                    right: 0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SliderButton(
+                          totalPages: 2,
+                          pageViewController: _pageViewController,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-              const Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                    "Basic Shirts Ltd. established in 2001,is situated in Dhaka,Bangladesh.With a total sewing workforce of 2400,Basic is a formidable player in garment making in the region. In order to support improved working conditions for its staff.The board of Basic Shirt has invested in a brands new,state of the art manufacturing facility in Gazipur,Dhaka.Known as Basic Tower, this newly built,6 story,single occupancy facility brings with in the latest new thinking and practices,taking Basic Shirts forward in all aspects of improved product quality,consistency and variety,as well as becoming the company of choice for local working people."),
-              ),
-            ],
+            ),
           ),
-        );
-      }),
-    );
+          const Padding(
+            padding: EdgeInsets.all(10),
+            child: Text(
+                "Basic Shirts Ltd. established in 2001,is situated in Dhaka,Bangladesh.With a total sewing workforce of 2400,Basic is a formidable player in garment making in the region. In order to support improved working conditions for its staff.The board of Basic Shirt has invested in a brands new,state of the art manufacturing facility in Gazipur,Dhaka.Known as Basic Tower, this newly built,6 story,single occupancy facility brings with in the latest new thinking and practices,taking Basic Shirts forward in all aspects of improved product quality,consistency and variety,as well as becoming the company of choice for local working people."),
+          ),
+        ],
+      );
+    });
   }
 }
 
