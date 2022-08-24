@@ -45,22 +45,27 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: Padding(
-        padding:
-            const EdgeInsets.only(top: 25, left: 25, right: 25, bottom: 85),
-        child: SizedBox.expand(
-          child: Card(
-            elevation: 10,
-            child: const [
-              HomeView(),
-              ClientsView(),
-              ProductsView(),
-              ObjectiveView(),
-              ContactUsView(),
-            ][_currentIndex],
-          ),
-        ),
-      ),
+      body: (_currentIndex == 2)
+          ? const Padding(
+              padding: EdgeInsets.only(bottom: 85),
+              child: ProductsView(),
+            )
+          : Padding(
+              padding: const EdgeInsets.only(
+                  top: 25, left: 25, right: 25, bottom: 85),
+              child: SizedBox.expand(
+                child: Card(
+                  elevation: 10,
+                  child: const [
+                    HomeView(),
+                    ClientsView(),
+                    ProductsView(),
+                    ObjectiveView(),
+                    ContactUsView(),
+                  ][_currentIndex],
+                ),
+              ),
+            ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: IntrinsicHeight(
         child: Align(
