@@ -8,6 +8,7 @@ class ContactUsView extends StatefulWidget {
 }
 
 class _ContactUsViewState extends State<ContactUsView> {
+  String location = "23.91910270106795, 90.43303905025736";
   @override
   Widget build(BuildContext context) {
     final List<Widget> _profiles = [
@@ -15,7 +16,6 @@ class _ContactUsViewState extends State<ContactUsView> {
         padding: const EdgeInsets.all(10),
         child: IntrinsicHeight(
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Container(
                 width: 2,
@@ -64,7 +64,6 @@ class _ContactUsViewState extends State<ContactUsView> {
         padding: const EdgeInsets.all(10),
         child: IntrinsicHeight(
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Container(
                 width: 2,
@@ -147,7 +146,7 @@ class _ContactUsViewState extends State<ContactUsView> {
             );
           }),
           const SizedBox(
-            height: 5,
+            height: 16,
           ),
           Text(
             "Address",
@@ -196,20 +195,24 @@ class _ContactUsViewState extends State<ContactUsView> {
               ),
             ),
           ),
+          const SizedBox(
+            height: 16,
+          ),
           LayoutBuilder(builder: (context, constraints) {
             if (constraints.maxWidth >= 650) {
-              return Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Expanded(child: ContactFormView()),
-                  Expanded(child: LocationMapView()),
-                ],
+              return IntrinsicHeight(
+                child: Row(
+                  children: const [
+                    Expanded(child: ContactFormView()),
+                    Expanded(child: LocationMapView()),
+                  ],
+                ),
               );
             }
             return Column(
               children: const [
                 ContactFormView(),
-                LocationMapView(),
+                AspectRatio(aspectRatio: 1, child: LocationMapView()),
               ],
             );
           }),
@@ -224,15 +227,12 @@ class LocationMapView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1,
-      child: Card(
-        elevation: 2,
-        surfaceTintColor: Theme.of(context).colorScheme.surfaceTint,
-        color: Theme.of(context).colorScheme.surface,
-        child: const Center(
-          child: Text("Location Map..."),
-        ),
+    return Card(
+      elevation: 2,
+      surfaceTintColor: Theme.of(context).colorScheme.surfaceTint,
+      color: Theme.of(context).colorScheme.surface,
+      child: const Center(
+        child: Text("Location Map..."),
       ),
     );
   }
