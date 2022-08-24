@@ -28,7 +28,7 @@ class _HomeViewState extends State<HomeView> {
                     controller: _pageViewController,
                     children: [
                       Image.asset(
-                        "assets/road-1072821__480.jpg",
+                        "assets/garments_picture/basic_front.jpg",
                         fit: BoxFit.cover,
                       ),
                       Image.asset(

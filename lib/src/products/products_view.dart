@@ -57,6 +57,12 @@ class _ProductsViewState extends State<ProductsView> {
                     child: Stack(
                       children: [
                         Container(
+                          child: SizedBox.expand(
+                            child: Image.asset(
+                              products[index].image,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
                           color: Theme.of(context).colorScheme.inversePrimary,
                         ),
                         Positioned(
