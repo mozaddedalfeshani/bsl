@@ -32,7 +32,7 @@ class _HomeViewState extends State<HomeView> {
                         fit: BoxFit.cover,
                       ),
                       Image.asset(
-                        "assets/download.jpg",
+                        "assets/garments_picture/bonomaya.jpg",
                         fit: BoxFit.cover,
                       ),
                     ],
