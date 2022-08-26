@@ -50,7 +50,7 @@ class _ContactUsViewState extends State<ContactUsView> {
                       // style: Theme.of(context).textTheme.titleMedium,
                     ),
                     Text(
-                      "E-mail: nurulislam@basicshirts.net video youtube",
+                      "E-mail: nurulislam@basicshirts.net ",
                       // style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ],
