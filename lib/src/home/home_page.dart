@@ -19,6 +19,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        // flexibleSpace: Container(
+        //   decoration: BoxDecoration(
+        //     image: DecorationImage(
+        //         image: AssetImage(
+        //             "assets/background/green-fabric-uhd-4k-wallpaper.jpg"),
+        //         fit: BoxFit.cover,
+        //   ),
+        // ),
         title: RichText(
           text: TextSpan(
             text: "BASIC",
