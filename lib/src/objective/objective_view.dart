@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:bsl/src/objective/model.dart';
 import 'package:flutter/material.dart';
 
 class ObjectiveView extends StatefulWidget {
@@ -46,6 +47,7 @@ class _ObjectiveViewState extends State<ObjectiveView> {
                           curve: Curves.linear)
                       .then((value) {
                     setState(() {
+                      _index = _pageController.page?.toInt() ?? 0;
                       _index = (_index == 1) ? 0 : 1;
                     });
                   });
@@ -128,6 +130,7 @@ class CompanyProfile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(30),
       child: ListView(
+        key: UniqueKey(),
         children: [
           Text(
             "Company Profile",
@@ -206,22 +209,16 @@ class CompanyProfile extends StatelessWidget {
             "1. ISO CERTIFIED\n2. ACCORD (STRUCTURAL, FIRE & ELECTRIC SAFETY)\n3. SEDEX MEMBER\n4. WRAP CERTIFIED\n5. CT-PAT CERTIFIED\n6. OCS (ORGANIC CONTENT STANDARD)\n7. INDITEX ( BUYER AUDIT)\n8. LI & FUNG ( BUYER AUDIT)\n9. NEXT ( BUYER AUDIT)\n10. OMEGA ( BUYER AUDIT)\n11. ENGELBERT STRAUSS ( BUYER AUDIT)",
           ),
           Table(
-            children: const [
-              TableRow(
-                children: [
-                  Text("Machine Type"),
-                  Text("Brand"),
-                  Text("Brand"),
-                ],
-              ),
-              TableRow(
-                children: [
-                  Text("Single needle locksticth"),
-                  Text("Juki"),
-                  Text("420"),
-                ],
-              ),
-            ],
+            border: TableBorder.all(width: 1),
+            children: tableDatas
+                .map<TableRow>((e) => TableRow(
+                      children: [
+                        Text(e.machineType),
+                        Text(e.brand),
+                        Text(e.quantity),
+                      ],
+                    ))
+                .toList(),
           )
         ],
       ),
