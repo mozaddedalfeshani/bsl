@@ -11,7 +11,7 @@ class _ContactUsViewState extends State<ContactUsView> {
   String location = "23.91910270106795, 90.43303905025736";
   @override
   Widget build(BuildContext context) {
-    final List<Widget> _profiles = [
+    final List<Widget> profiles = [
       Padding(
         padding: const EdgeInsets.all(10),
         child: IntrinsicHeight(
@@ -135,14 +135,14 @@ class _ContactUsViewState extends State<ContactUsView> {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Expanded(child: _profiles[0]),
-                  Expanded(child: _profiles[1]),
+                  Expanded(child: profiles[0]),
+                  Expanded(child: profiles[1]),
                 ],
               );
             }
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: _profiles,
+              children: profiles,
             );
           }),
           const SizedBox(

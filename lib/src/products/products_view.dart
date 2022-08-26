@@ -1,5 +1,4 @@
-import 'package:bsl/src/products/products_list.dart';
-import 'package:flutter/cupertino.dart';
+// import 'package:bsl/src/products/products_list.dart';
 import 'package:flutter/material.dart';
 
 class ProductsView extends StatefulWidget {
@@ -10,7 +9,7 @@ class ProductsView extends StatefulWidget {
 }
 
 class _ProductsViewState extends State<ProductsView> {
-  final Products _productList = Products();
+  // final Products _productList = Products();
   final ScrollController _productScrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
@@ -22,7 +21,7 @@ class _ProductsViewState extends State<ProductsView> {
           padding: const EdgeInsets.all(50),
           controller: _productScrollController,
           scrollDirection: Axis.horizontal,
-          children: [
+          children: const [
             ProductCard(),
             ProductCard(),
             ProductCard(),

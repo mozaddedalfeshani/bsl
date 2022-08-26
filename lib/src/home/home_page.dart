@@ -41,7 +41,9 @@ class _HomePageState extends State<HomePage> {
             onPressed: () {
               SettingsController.instance.toggleTheme();
             },
-            icon: const Icon(Icons.wb_sunny_outlined),
+            icon: (SettingsController.instance.themeMode == ThemeMode.dark)
+                ? const Icon(Icons.dark_mode_outlined)
+                : const Icon(Icons.wb_sunny_outlined),
           ),
         ],
       ),
