@@ -1,5 +1,8 @@
 // import 'package:bsl/src/products/products_list.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
+import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 
 class ProductsView extends StatefulWidget {
   const ProductsView({Key? key}) : super(key: key);
@@ -10,27 +13,37 @@ class ProductsView extends StatefulWidget {
 
 class _ProductsViewState extends State<ProductsView> {
   // final Products _productList = Products();
-  final ScrollController _productScrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10),
-      child: Scrollbar(
-        controller: _productScrollController,
-        child: ListView(
-          padding: const EdgeInsets.all(50),
-          controller: _productScrollController,
-          scrollDirection: Axis.horizontal,
-          children: const [
-            ProductCard(),
-            ProductCard(),
-            ProductCard(),
-            ProductCard(),
-            ProductCard(),
-            ProductCard(),
-            ProductCard(),
-          ],
+      child: ScrollConfiguration(
+        behavior: ScrollConfiguration.of(context).copyWith(
+          dragDevices: {
+            PointerDeviceKind.mouse,
+            PointerDeviceKind.touch,
+          },
         ),
+        child: LayoutBuilder(builder: (context, _) {
+          return Swiper(
+            key: UniqueKey(),
+            scrollDirection: Axis.horizontal,
+            itemCount: 10,
+            layout: SwiperLayout.STACK,
+            itemHeight: 500,
+            itemWidth: 300,
+            pagination: SwiperPagination(
+              builder: DotSwiperPaginationBuilder(
+                color: Theme.of(context).colorScheme.onSurface,
+                activeColor: Theme.of(context).colorScheme.primary,
+              ),
+              alignment: Alignment.bottomCenter,
+            ),
+            itemBuilder: (context, index) {
+              return const ProductCard();
+            },
+          );
+        }),
       ),
     );
   }

@@ -5,14 +5,7 @@ class TableData {
   final String quantity;
 }
 
-List<TableData> tableDatas = [
-  TableData("Machine type", "hellow", "100"),
-  TableData("Machine type", "hellow", "100"),
-  TableData("Machine type", "hellow", "100"),
-  TableData("Machine type", "hellow", "100"),
-  TableData("Machine type", "hellow", "100"),
-  TableData("Machine type", "hellow", "100"),
-  TableData("Machine type", "hellow", "100"),
-  TableData("Machine type", "hellow", "100"),
-  TableData("Machine type", "hellow", "100"),
+List<TableData> tableInformation = [
+  TableData("Machine Type", "Brand", "Quantity"),
+  TableData("Single needle locksticth", "Juki", "420"),
 ];

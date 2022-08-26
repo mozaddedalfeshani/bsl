@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:bsl/src/objective/model.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class ObjectiveView extends StatefulWidget {
@@ -12,7 +13,7 @@ class ObjectiveView extends StatefulWidget {
 
 class _ObjectiveViewState extends State<ObjectiveView> {
   final PageController _pageController = PageController();
-  int _index = 1;
+  int _index = 0;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -22,39 +23,55 @@ class _ObjectiveViewState extends State<ObjectiveView> {
           bottom: 0,
           left: 0,
           right: 0,
-          child: PageView(
-            controller: _pageController,
-            children: const [
-              ObjectiveViewBox(),
-              CompanyProfile(),
-            ],
+          child: ScrollConfiguration(
+            behavior: ScrollConfiguration.of(context).copyWith(
+              dragDevices: {
+                PointerDeviceKind.mouse,
+                PointerDeviceKind.touch,
+              },
+            ),
+            child: PageView(
+              key: const ValueKey("Objective_page"),
+              controller: _pageController,
+              children: [
+                ObjectiveViewBox(
+                  key: const ValueKey("Objective"),
+                ),
+                CompanyProfile(
+                  key: const ValueKey("Company_profile"),
+                ),
+              ],
+              onPageChanged: (value) {
+                setState(() {
+                  _index = value;
+                });
+              },
+            ),
           ),
         ),
         Align(
           alignment: [
-            Alignment.centerLeft,
             Alignment.centerRight,
+            Alignment.centerLeft,
           ][_index],
           child: Transform.translate(
-            offset: Offset([-25.0, 48.0][_index], 0),
+            offset: Offset(
+                [
+                  48.0,
+                  -25.0,
+                ][_index],
+                0),
             child: Transform.rotate(
               angle: (pi / 2) * 3,
               child: TextButton(
                 onPressed: () {
-                  _pageController
-                      .animateToPage(_index,
-                          duration: const Duration(milliseconds: 250),
-                          curve: Curves.linear)
-                      .then((value) {
-                    setState(() {
-                      _index = _pageController.page?.toInt() ?? 0;
-                      _index = (_index == 1) ? 0 : 1;
-                    });
-                  });
+                  _pageController.animateToPage((_index + 1) % 2,
+                      duration: const Duration(milliseconds: 250),
+                      curve: Curves.linear);
                 },
                 child: Text([
-                  "Objective",
                   "Company Profile",
+                  "Objective",
                 ][_index]),
               ),
             ),
@@ -66,13 +83,20 @@ class _ObjectiveViewState extends State<ObjectiveView> {
 }
 
 class ObjectiveViewBox extends StatelessWidget {
-  const ObjectiveViewBox({Key? key}) : super(key: key);
+  ObjectiveViewBox({
+    Key? key,
+    ScrollController? scrollController,
+  })  : _scrollController = scrollController ?? ScrollController(),
+        super(key: key);
+  final ScrollController _scrollController;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(30),
       child: ListView(
+        controller: _scrollController,
+        key: const ValueKey("Objective_list"),
         children: [
           Text(
             "Objective",
@@ -107,15 +131,6 @@ class ObjectiveViewBox extends StatelessWidget {
           const Text(
             "Respect the Customers Feelings. Achieved goals as celebrities and owner/workers celebrated success. No wastes are acceptable. We never complacent. We enjoy our responsibilities & believe in Social & Environmental Awareness.",
           ),
-          Text(
-            "Machinery & Equipment",
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-          ),
-          Table(
-            children: [],
-          ),
         ],
       ),
     );
@@ -123,14 +138,18 @@ class ObjectiveViewBox extends StatelessWidget {
 }
 
 class CompanyProfile extends StatelessWidget {
-  const CompanyProfile({Key? key}) : super(key: key);
+  CompanyProfile({Key? key, ScrollController? scrollController})
+      : _scrollController = scrollController ?? ScrollController(),
+        super(key: key);
+  final ScrollController _scrollController;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(30),
       child: ListView(
-        key: UniqueKey(),
+        key: const ValueKey("company_profile_list"),
+        controller: _scrollController,
         children: [
           Text(
             "Company Profile",
@@ -208,14 +227,33 @@ class CompanyProfile extends StatelessWidget {
           const Text(
             "1. ISO CERTIFIED\n2. ACCORD (STRUCTURAL, FIRE & ELECTRIC SAFETY)\n3. SEDEX MEMBER\n4. WRAP CERTIFIED\n5. CT-PAT CERTIFIED\n6. OCS (ORGANIC CONTENT STANDARD)\n7. INDITEX ( BUYER AUDIT)\n8. LI & FUNG ( BUYER AUDIT)\n9. NEXT ( BUYER AUDIT)\n10. OMEGA ( BUYER AUDIT)\n11. ENGELBERT STRAUSS ( BUYER AUDIT)",
           ),
+          Text(
+            "Machinery & Equipment",
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+          ),
           Table(
+            columnWidths: const {
+              1: IntrinsicColumnWidth(),
+              2: IntrinsicColumnWidth(),
+            },
             border: TableBorder.all(width: 1),
-            children: tableDatas
+            children: tableInformation
                 .map<TableRow>((e) => TableRow(
                       children: [
-                        Text(e.machineType),
-                        Text(e.brand),
-                        Text(e.quantity),
+                        Padding(
+                          padding: const EdgeInsets.all(4),
+                          child: Text(e.machineType),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(4),
+                          child: Text(e.brand),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(4),
+                          child: Text(e.quantity),
+                        ),
                       ],
                     ))
                 .toList(),
