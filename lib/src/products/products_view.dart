@@ -1,8 +1,8 @@
 // import 'package:bsl/src/products/products_list.dart';
+import 'package:bsl/src/products/products_list.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 
 class ProductsView extends StatefulWidget {
   const ProductsView({Key? key}) : super(key: key);
@@ -12,7 +12,10 @@ class ProductsView extends StatefulWidget {
 }
 
 class _ProductsViewState extends State<ProductsView> {
-  // final Products _productList = Products();
+  final Products _productList = Products();
+  final CarouselController _carouselController = CarouselController();
+  var _index = 0;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -24,26 +27,62 @@ class _ProductsViewState extends State<ProductsView> {
             PointerDeviceKind.touch,
           },
         ),
-        child: LayoutBuilder(builder: (context, _) {
-          return Swiper(
-            key: UniqueKey(),
-            scrollDirection: Axis.horizontal,
-            itemCount: 10,
-            layout: SwiperLayout.STACK,
-            itemHeight: 500,
-            itemWidth: 300,
-            pagination: SwiperPagination(
-              builder: DotSwiperPaginationBuilder(
-                color: Theme.of(context).colorScheme.onSurface,
-                activeColor: Theme.of(context).colorScheme.primary,
-              ),
-              alignment: Alignment.bottomCenter,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(
+              child: LayoutBuilder(builder: (context, constraints) {
+                return CarouselSlider.builder(
+                  itemCount: _productList.menS.length,
+                  carouselController: _carouselController,
+                  options: CarouselOptions(
+                    enlargeCenterPage: true,
+                    enableInfiniteScroll: false,
+                    viewportFraction: (3 / 5) /
+                        (constraints.maxWidth / constraints.maxHeight),
+                    aspectRatio: 3 / 5,
+                    autoPlay: true,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        _index = index;
+                      });
+                    },
+                  ),
+                  itemBuilder: (context, index, secondIndex) {
+                    return const ProductCard();
+                  },
+                );
+              }),
             ),
-            itemBuilder: (context, index) {
-              return const ProductCard();
-            },
-          );
-        }),
+            LayoutBuilder(builder: (context, constraints) {
+              return SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: IntrinsicWidth(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(minWidth: constraints.maxWidth),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: Iterable<int>.generate(_productList.menS.length)
+                          .map<Widget>((e) {
+                        return GestureDetector(
+                          onTap: () {
+                            _carouselController.animateToPage(e);
+                          },
+                          child: Icon(
+                            Icons.circle,
+                            color: (e == _index)
+                                ? Theme.of(context).colorScheme.primary
+                                : null,
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ),
+              );
+            }),
+          ],
+        ),
       ),
     );
   }
@@ -54,9 +93,9 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AspectRatio(
-      aspectRatio: 3 / 5,
-      child: Card(),
-    );
+    return const SizedBox.expand(
+        child: Card(
+      elevation: 5,
+    ));
   }
 }

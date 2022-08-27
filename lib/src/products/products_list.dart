@@ -1,9 +1,8 @@
 class Products {
   final List<Product> _menS = [
-    // for (int i = 0; i <= 50; i++) ...[
-    //   Product("Men's Shirt $i", "image.jpg"),
-    // ],
-    Product("men", "assets/download.jpg"),
+    for (int i = 0; i <= 50; i++) ...[
+      Product("Men's Shirt $i", "image.jpg"),
+    ],
   ];
 
   List<Product> get menS => _menS;
