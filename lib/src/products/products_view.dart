@@ -13,8 +13,8 @@ class ProductsView extends StatefulWidget {
 
 class _ProductsViewState extends State<ProductsView> {
   final Products _productList = Products();
-  final CarouselController _carouselController = CarouselController();
-  var _index = 0;
+  //final CarouselController _carouselController = CarouselController();
+  // var _index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class _ProductsViewState extends State<ProductsView> {
               child: LayoutBuilder(builder: (context, constraints) {
                 return CarouselSlider.builder(
                   itemCount: _productList.menS.length,
-                  carouselController: _carouselController,
+                  //carouselController: _carouselController,
                   options: CarouselOptions(
                     enlargeCenterPage: true,
                     enableInfiniteScroll: false,
@@ -42,45 +42,48 @@ class _ProductsViewState extends State<ProductsView> {
                         (constraints.maxWidth / constraints.maxHeight),
                     aspectRatio: 3 / 5,
                     autoPlay: true,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        _index = index;
-                      });
-                    },
+                    // onPageChanged: (index, reason) {
+                    //   setState(() {
+                    //     _index = index;
+                    //   });
+                    // },
                   ),
                   itemBuilder: (context, index, secondIndex) {
-                    return const ProductCard();
+                    return ProductCard(
+                      name: _productList.menS[index].name,
+                      src: _productList.menS[index].image,
+                    );
                   },
                 );
               }),
             ),
-            LayoutBuilder(builder: (context, constraints) {
-              return SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: IntrinsicWidth(
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(minWidth: constraints.maxWidth),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: Iterable<int>.generate(_productList.menS.length)
-                          .map<Widget>((e) {
-                        return GestureDetector(
-                          onTap: () {
-                            _carouselController.animateToPage(e);
-                          },
-                          child: Icon(
-                            Icons.circle,
-                            color: (e == _index)
-                                ? Theme.of(context).colorScheme.primary
-                                : null,
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                ),
-              );
-            }),
+            // LayoutBuilder(builder: (context, constraints) {
+            //   return SingleChildScrollView(
+            //     scrollDirection: Axis.horizontal,
+            //     child: IntrinsicWidth(
+            //       child: ConstrainedBox(
+            //         constraints: BoxConstraints(minWidth: constraints.maxWidth),
+            //         child: Row(
+            //           mainAxisAlignment: MainAxisAlignment.center,
+            //           children: Iterable<int>.generate(_productList.menS.length)
+            //               .map<Widget>((e) {
+            //             return GestureDetector(
+            //               onTap: () {
+            //                 _carouselController.animateToPage(e);
+            //               },
+            //               child: Icon(
+            //                 Icons.circle,
+            //                 color: (e == _index)
+            //                     ? Theme.of(context).colorScheme.primary
+            //                     : null,
+            //               ),
+            //             );
+            //           }).toList(),
+            //         ),
+            //       ),
+            //     ),
+            //   );
+            // }),
           ],
         ),
       ),
@@ -89,13 +92,19 @@ class _ProductsViewState extends State<ProductsView> {
 }
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({Key? key}) : super(key: key);
+  const ProductCard({Key? key, required this.name, required this.src})
+      : super(key: key);
+
+  final String name;
+  final String src;
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox.expand(
-        child: Card(
-      elevation: 5,
-    ));
+    return SizedBox.expand(
+      child: Card(
+        elevation: 5,
+        child: Image.asset(src),
+      ),
+    );
   }
 }

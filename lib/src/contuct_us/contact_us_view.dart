@@ -238,11 +238,17 @@ class LocationMapView extends StatelessWidget {
   }
 }
 
-class ContactFormView extends StatelessWidget {
+class ContactFormView extends StatefulWidget {
   const ContactFormView({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<ContactFormView> createState() => _ContactFormViewState();
+}
+
+class _ContactFormViewState extends State<ContactFormView> {
+  bool change = false;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -299,18 +305,37 @@ class ContactFormView extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: ElevatedButton.icon(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  primary: Theme.of(context).colorScheme.primary,
-                  onPrimary: Theme.of(context).colorScheme.onPrimary,
+
+            InkWell(
+              onTap: () {
+                setState(() {
+                  change = true;
+                });
+              },
+              child: AnimatedContainer(
+                decoration: BoxDecoration(
+                  color: Colors.green,
+                  borderRadius: BorderRadius.circular(change ? 15 : 2),
                 ),
-                icon: const Icon(Icons.send),
-                label: const Text("Send"),
+                duration: Duration(seconds: 2),
+                width: change ? 50 : 100,
+                height: change ? 48 : 50,
+                alignment: Alignment.center,
+                child: change ? Icon(Icons.done_outline) : Icon(Icons.send),
               ),
             ),
+            // Align(
+            //   alignment: Alignment.centerRight,
+            //   child: ElevatedButton.icon(
+            //     onPressed: () {},
+            //     style: ElevatedButton.styleFrom(
+            //       primary: Theme.of(context).colorScheme.primary,
+            //       onPrimary: Theme.of(context).colorScheme.onPrimary,
+            //     ),
+            //     icon: const Icon(Icons.send),
+            //     label: const Text("Send"),
+            //   ),
+            // ),
           ],
         ),
       ),
