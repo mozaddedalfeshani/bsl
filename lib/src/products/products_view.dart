@@ -12,8 +12,8 @@ class ProductsView extends StatefulWidget {
 }
 
 class _ProductsViewState extends State<ProductsView> {
-  final Products _productList = Products();
-  //final CarouselController _carouselController = CarouselController();
+  final List<Product> _productList = Products().all;
+  // final CarouselController _carouselController = CarouselController();
   // var _index = 0;
 
   @override
@@ -22,10 +22,7 @@ class _ProductsViewState extends State<ProductsView> {
       padding: const EdgeInsets.all(10),
       child: ScrollConfiguration(
         behavior: ScrollConfiguration.of(context).copyWith(
-          dragDevices: {
-            PointerDeviceKind.mouse,
-            PointerDeviceKind.touch,
-          },
+          dragDevices: PointerDeviceKind.values.toSet(),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -33,7 +30,7 @@ class _ProductsViewState extends State<ProductsView> {
             Expanded(
               child: LayoutBuilder(builder: (context, constraints) {
                 return CarouselSlider.builder(
-                  itemCount: _productList.menS.length,
+                  itemCount: _productList.length,
                   //carouselController: _carouselController,
                   options: CarouselOptions(
                     enlargeCenterPage: true,
@@ -50,8 +47,8 @@ class _ProductsViewState extends State<ProductsView> {
                   ),
                   itemBuilder: (context, index, secondIndex) {
                     return ProductCard(
-                      name: _productList.menS[index].name,
-                      src: _productList.menS[index].image,
+                      name: _productList[index].name,
+                      src: _productList[index].image,
                     );
                   },
                 );
@@ -103,7 +100,35 @@ class ProductCard extends StatelessWidget {
     return SizedBox.expand(
       child: Card(
         elevation: 5,
-        child: Image.asset(src),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: Image.asset(
+                  src,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: Container(
+                  color: Theme.of(context).colorScheme.surface.withOpacity(0.7),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Text(
+                      name,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

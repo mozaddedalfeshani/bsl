@@ -1,20 +1,14 @@
 class Products {
-  final List<Product> _menS = [
-    // for (int i = 0; i <= 50; i++) ...[
-    //   Product("Men's Shirt $i", "image.jpg"),
-    // ],
+  final List<Product> _all = [
     Product("Jack & Sones", "assets/shirts/images.jpeg"),
     Product("Jack & Sones", "assets/shirts/Unknown.jpeg"),
     Product("Jack & Sones", "assets/shirts/Unknown-1.jpeg"),
   ];
+  List<Product> get all => _all;
+  final List<Product> _menS = [];
 
   List<Product> get menS => _menS;
-  final List<Product> _womenS = [
-    // for (int i = 0; i <= 50; i++) ...[
-    //   Product("Women's Shirt $i", "image.jpg"),
-    // ],
-    //Product("men", "assets/road-1072821__480.jpg"),
-  ];
+  final List<Product> _womenS = [];
   List<Product> get womenS => _womenS;
 }
 

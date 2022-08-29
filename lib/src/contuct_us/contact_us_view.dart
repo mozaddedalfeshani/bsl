@@ -317,11 +317,13 @@ class _ContactFormViewState extends State<ContactFormView> {
                   color: Colors.green,
                   borderRadius: BorderRadius.circular(change ? 15 : 2),
                 ),
-                duration: Duration(seconds: 2),
+                duration: const Duration(seconds: 2),
                 width: change ? 50 : 100,
                 height: change ? 48 : 50,
                 alignment: Alignment.center,
-                child: change ? Icon(Icons.done_outline) : Icon(Icons.send),
+                child: change
+                    ? const Icon(Icons.done_outline)
+                    : const Icon(Icons.send),
               ),
             ),
             // Align(

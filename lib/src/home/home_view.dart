@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {
@@ -8,8 +9,11 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  final PageController _pageViewController = PageController();
-
+  // final PageController _pageViewController = PageController();
+  final List<String> _banners = const [
+    "assets/garments_picture/basic_front.jpg",
+    "assets/garments_picture/bonomaya.jpg",
+  ];
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constrains) {
@@ -22,36 +26,64 @@ class _HomeViewState extends State<HomeView> {
                     : constrains.maxHeight * 0.60),
             child: Padding(
               padding: const EdgeInsets.all(10),
-              child: Stack(
-                children: [
-                  PageView(
-                    controller: _pageViewController,
-                    children: [
-                      Image.asset(
-                        "assets/garments_picture/basic_front.jpg",
-                        fit: BoxFit.cover,
+              // child: Stack(
+              //   children: [
+              //     PageView(
+              //       controller: _pageViewController,
+              //       children: [
+              //         Image.asset(
+              //           "assets/garments_picture/basic_front.jpg",
+              //           fit: BoxFit.cover,
+              //         ),
+              //         Image.asset(
+              //           "assets/garments_picture/bonomaya.jpg",
+              //           fit: BoxFit.cover,
+              //         ),
+              //       ],
+              //     ),
+              //     Positioned(
+              //       bottom: 3,
+              //       left: 0,
+              //       right: 0,
+              //       child: Row(
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: [
+              //           SliderButton(
+              //             totalPages: 2,
+              //             pageViewController: _pageViewController,
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxHeight: 300),
+                child: LayoutBuilder(builder: (context, constraints) {
+                  return CarouselSlider(
+                      options: CarouselOptions(
+                        aspectRatio:
+                            (constrains.maxWidth / constrains.maxHeight),
+                        enableInfiniteScroll: false,
+                        enlargeCenterPage: true,
+                        autoPlay: true,
                       ),
-                      Image.asset(
-                        "assets/garments_picture/bonomaya.jpg",
-                        fit: BoxFit.cover,
-                      ),
-                    ],
-                  ),
-                  Positioned(
-                    bottom: 3,
-                    left: 0,
-                    right: 0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SliderButton(
-                          totalPages: 2,
-                          pageViewController: _pageViewController,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                      items: _banners
+                          .map<Widget>(
+                            (e) => Card(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: SizedBox.expand(
+                                  child: Image.asset(
+                                    e,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                          .toList());
+                }),
               ),
             ),
           ),
