@@ -13,6 +13,8 @@ class ObjectiveView extends StatefulWidget {
 class _ObjectiveViewState extends State<ObjectiveView>
     with SingleTickerProviderStateMixin {
   late final AnimationController _animationController;
+  late final Animation<double> _objectiveAnimation;
+  late final Animation<double> _profileAnimation;
   @override
   void initState() {
     _animationController = AnimationController(
@@ -20,6 +22,24 @@ class _ObjectiveViewState extends State<ObjectiveView>
         milliseconds: 270,
       ),
       vsync: this,
+    );
+    _objectiveAnimation = Tween<double>(
+      begin: 0,
+      end: 1,
+    ).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: const Interval(0, 0.7),
+      ),
+    );
+    _profileAnimation = Tween<double>(
+      begin: 1,
+      end: 0,
+    ).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: const Interval(0.3, 1),
+      ),
     );
     super.initState();
   }
@@ -66,9 +86,7 @@ class _ObjectiveViewState extends State<ObjectiveView>
                     child: Transform.rotate(
                       angle: (pi / 2) * 3,
                       child: Transform.scale(
-                        scale: (_animationController.value < 0.5)
-                            ? 0
-                            : ((_animationController.value - 0.5) * 2),
+                        scale: _objectiveAnimation.value,
                         child: TextButton(
                           onPressed: () {
                             _animationController.reverse();
@@ -88,9 +106,7 @@ class _ObjectiveViewState extends State<ObjectiveView>
                     child: Transform.rotate(
                       angle: (pi / 2) * 3,
                       child: Transform.scale(
-                        scale: (_animationController.value > 0.5)
-                            ? 0
-                            : 1 - _animationController.value,
+                        scale: _profileAnimation.value,
                         child: TextButton(
                           onPressed: () {
                             _animationController.forward();

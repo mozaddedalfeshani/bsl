@@ -306,26 +306,7 @@ class _ContactFormViewState extends State<ContactFormView> {
               height: 10,
             ),
 
-            InkWell(
-              onTap: () {
-                setState(() {
-                  change = true;
-                });
-              },
-              child: AnimatedContainer(
-                decoration: BoxDecoration(
-                  color: Colors.green,
-                  borderRadius: BorderRadius.circular(change ? 15 : 2),
-                ),
-                duration: const Duration(seconds: 2),
-                width: change ? 50 : 100,
-                height: change ? 48 : 50,
-                alignment: Alignment.center,
-                child: change
-                    ? const Icon(Icons.done_outline)
-                    : const Icon(Icons.send),
-              ),
-            ),
+            const AnimatedSendButton(),
             // Align(
             //   alignment: Alignment.centerRight,
             //   child: ElevatedButton.icon(
@@ -342,5 +323,60 @@ class _ContactFormViewState extends State<ContactFormView> {
         ),
       ),
     );
+  }
+}
+
+class AnimatedSendButton extends StatefulWidget {
+  const AnimatedSendButton({super.key});
+
+  @override
+  State<AnimatedSendButton> createState() => _AnimatedSendButtonState();
+}
+
+class _AnimatedSendButtonState extends State<AnimatedSendButton>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _animationController;
+  final SizeTween _tween = SizeTween(
+    begin: const Size(100, 50),
+    end: const Size(55, 55),
+  );
+  late final Animation<Size?> _sizeAnimation;
+  @override
+  void initState() {
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 400),
+      vsync: this,
+    );
+    _sizeAnimation = _tween.animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeIn),
+    );
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+        animation: _sizeAnimation,
+        builder: (context, child) {
+          return ElevatedButton(
+            onPressed: () {
+              _animationController.forward();
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              foregroundColor: Theme.of(context).colorScheme.onPrimary,
+              fixedSize: _sizeAnimation.value,
+            ),
+            child: (_animationController.value == 1)
+                ? const Icon(Icons.check)
+                : const Icon(Icons.send),
+          );
+        });
   }
 }
