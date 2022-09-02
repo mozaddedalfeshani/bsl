@@ -305,7 +305,6 @@ class _ContactFormViewState extends State<ContactFormView> {
             const SizedBox(
               height: 10,
             ),
-
             const AnimatedSendButton(),
             // Align(
             //   alignment: Alignment.centerRight,
@@ -337,7 +336,7 @@ class _AnimatedSendButtonState extends State<AnimatedSendButton>
     with SingleTickerProviderStateMixin {
   late final AnimationController _animationController;
   final SizeTween _tween = SizeTween(
-    begin: const Size(100, 50),
+    begin: const Size(100, 40),
     end: const Size(55, 55),
   );
   late final Animation<Size?> _sizeAnimation;
@@ -351,6 +350,9 @@ class _AnimatedSendButtonState extends State<AnimatedSendButton>
       CurvedAnimation(parent: _animationController, curve: Curves.easeIn),
     );
     super.initState();
+    _animationController.addListener(() {
+      setState(() {});
+    });
   }
 
   @override
@@ -361,22 +363,24 @@ class _AnimatedSendButtonState extends State<AnimatedSendButton>
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-        animation: _sizeAnimation,
-        builder: (context, child) {
-          return ElevatedButton(
-            onPressed: () {
-              _animationController.forward();
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Theme.of(context).colorScheme.primary,
-              foregroundColor: Theme.of(context).colorScheme.onPrimary,
-              fixedSize: _sizeAnimation.value,
-            ),
-            child: (_animationController.value == 1)
-                ? const Icon(Icons.check)
-                : const Icon(Icons.send),
-          );
-        });
+    return ElevatedButton(
+      onPressed: () {
+        if (_animationController.isCompleted) {
+          _animationController.reverse();
+        } else {
+          _animationController.forward();
+        }
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+        foregroundColor: Theme.of(context).colorScheme.onSecondaryContainer,
+        fixedSize: _sizeAnimation.value,
+      ).copyWith(
+        elevation: ButtonStyleButton.allOrNull(0),
+      ),
+      child: (_animationController.value == 1)
+          ? const Icon(Icons.check)
+          : const Icon(Icons.send),
+    );
   }
 }

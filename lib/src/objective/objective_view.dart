@@ -279,7 +279,10 @@ class CompanyProfile extends StatelessWidget {
             1: IntrinsicColumnWidth(),
             2: IntrinsicColumnWidth(),
           },
-          border: TableBorder.all(width: 1),
+          border: TableBorder.all(
+            width: 1,
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
           children: tableInformation
               .map<TableRow>((e) => TableRow(
                     children: [

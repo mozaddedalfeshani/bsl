@@ -25,7 +25,7 @@ class ClientsView extends StatelessWidget {
         ].map<Widget>((src) {
           return AnimatedClientCard(
             src: src,
-            description: "My name is samin yeasar sohag",
+            description: "Short description about this client",
           );
         }).toList(),
       );
@@ -72,6 +72,9 @@ class _AnimatedClientCardState extends State<AnimatedClientCard>
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      hoverColor: Colors.transparent,
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
       onTap: () {
         if (_controller.isCompleted) {
           _controller.reverse();
@@ -79,8 +82,6 @@ class _AnimatedClientCardState extends State<AnimatedClientCard>
           _controller.forward();
         }
       },
-      hoverColor: Colors.transparent,
-      splashColor: Colors.transparent,
       onHover: (value) {
         if (value) {
           _controller.forward();
