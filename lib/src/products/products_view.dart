@@ -47,7 +47,7 @@ class _ProductsViewState extends State<ProductsView> {
                   ),
                   itemBuilder: (context, index, secondIndex) {
                     return ProductCard(
-                      name: _productList[index].name,
+                      name: "Product: ${index + 1}/${_productList.length}",
                       src: _productList[index].image,
                     );
                   },

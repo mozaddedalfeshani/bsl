@@ -1,5 +1,5 @@
 import 'package:bsl/src/clients/clients_view.dart';
-import 'package:bsl/src/contuct_us/contact_us_view.dart';
+import 'package:bsl/src/contact_us/contact_us_view.dart';
 import 'package:bsl/src/home/home_view.dart';
 import 'package:bsl/src/objective/objective_view.dart';
 import 'package:bsl/src/products/products_view.dart';
@@ -19,14 +19,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // flexibleSpace: Container(
-        //   decoration: BoxDecoration(
-        //     image: DecorationImage(
-        //         image: AssetImage(
-        //             "assets/background/green-fabric-uhd-4k-wallpaper.jpg"),
-        //         fit: BoxFit.cover,
-        //   ),
-        // ),
         title: RichText(
           text: TextSpan(
             text: "BASIC",
@@ -55,27 +47,29 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: (_currentIndex == 2)
-          ? const Padding(
-              padding: EdgeInsets.only(bottom: 85),
-              child: ProductsView(),
-            )
-          : Padding(
-              padding: const EdgeInsets.only(
-                  top: 25, left: 25, right: 25, bottom: 85),
-              child: SizedBox.expand(
-                child: Card(
-                  elevation: 10,
-                  child: const [
-                    HomeView(),
-                    ClientsView(),
-                    ProductsView(),
-                    ObjectiveView(),
-                    ContactUsView(),
-                  ][_currentIndex],
+      body: SelectionArea(
+        child: (_currentIndex == 2)
+            ? const Padding(
+                padding: EdgeInsets.only(bottom: 85),
+                child: ProductsView(),
+              )
+            : Padding(
+                padding: const EdgeInsets.only(
+                    top: 25, left: 25, right: 25, bottom: 85),
+                child: SizedBox.expand(
+                  child: Card(
+                    elevation: 10,
+                    child: const [
+                      HomeView(),
+                      ClientsView(),
+                      ProductsView(),
+                      ObjectiveView(),
+                      ContactUsView(),
+                    ][_currentIndex],
+                  ),
                 ),
               ),
-            ),
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: IntrinsicHeight(
         child: Align(
