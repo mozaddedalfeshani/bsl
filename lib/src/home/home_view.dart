@@ -11,10 +11,11 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   // final PageController _pageViewController = PageController();
-  final List<String> _banners = Iterable<int>.generate(2)
-      .map((index) =>
-          "https://github.com/mozaddedalfeshani/bslphotos/raw/main/factory%20photos/Front-${index + 1}.jpg")
-      .toList();
+  final List<String> _banners = List<String>.generate(
+    2,
+    (index) =>
+        "https://github.com/mozaddedalfeshani/bslphotos/raw/main/factory%20photos/Front-${index + 1}.jpg",
+  );
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constrains) {

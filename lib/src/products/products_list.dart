@@ -1,11 +1,11 @@
 class Products {
-  final List<Product> _all =
-      Iterable<int>.generate(22) // generate == last value.
-          .map((e) => Product(
-                "Jack & Sones",
-                "https://github.com/mozaddedalfeshani/bslphotos/raw/main/Ladis_dress_git/Picture-${e + 1}.jpg",
-              ))
-          .toList();
+  final List<Product> _all = List<Product>.generate(
+    2,
+    (index) => Product(
+      "Jack & Sones",
+      "https://github.com/mozaddedalfeshani/bslphotos/raw/main/Ladis_dress_git/Picture-${index + 1}.jpg",
+    ),
+  );
   List<Product> get all => _all;
   final List<Product> _menS = [];
 
