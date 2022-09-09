@@ -1,4 +1,3 @@
-// import 'package:bsl/src/products/products_list.dart';
 import 'package:bsl/src/products/products_list.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -14,8 +13,6 @@ class ProductsView extends StatefulWidget {
 
 class _ProductsViewState extends State<ProductsView> {
   final List<Product> _productList = Products().all;
-  // final CarouselController _carouselController = CarouselController();
-  // var _index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -29,59 +26,28 @@ class _ProductsViewState extends State<ProductsView> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
-              child: LayoutBuilder(builder: (context, constraints) {
-                return CarouselSlider.builder(
-                  itemCount: _productList.length,
-                  //carouselController: _carouselController,
-                  options: CarouselOptions(
-                    enlargeCenterPage: true,
-                    enableInfiniteScroll: false,
-                    viewportFraction: (3 / 5) /
-                        (constraints.maxWidth / constraints.maxHeight),
-                    aspectRatio: 3 / 5,
-                    autoPlay: true,
-                    // onPageChanged: (index, reason) {
-                    //   setState(() {
-                    //     _index = index;
-                    //   });
-                    // },
-                  ),
-                  itemBuilder: (context, index, secondIndex) {
-                    return ProductCard(
-                      name: "Product: ${index + 1}/${_productList.length}",
-                      src: _productList[index].image,
-                    );
-                  },
-                );
-              }),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return CarouselSlider.builder(
+                    itemCount: _productList.length,
+                    options: CarouselOptions(
+                      enlargeCenterPage: true,
+                      enableInfiniteScroll: false,
+                      viewportFraction: (3 / 5) /
+                          (constraints.maxWidth / constraints.maxHeight),
+                      aspectRatio: 3 / 5,
+                      autoPlay: true,
+                    ),
+                    itemBuilder: (context, index, secondIndex) {
+                      return ProductCard(
+                        name: "Product: ${index + 1}/${_productList.length}",
+                        src: _productList[index].image,
+                      );
+                    },
+                  );
+                },
+              ),
             ),
-            // LayoutBuilder(builder: (context, constraints) {
-            //   return SingleChildScrollView(
-            //     scrollDirection: Axis.horizontal,
-            //     child: IntrinsicWidth(
-            //       child: ConstrainedBox(
-            //         constraints: BoxConstraints(minWidth: constraints.maxWidth),
-            //         child: Row(
-            //           mainAxisAlignment: MainAxisAlignment.center,
-            //           children: Iterable<int>.generate(_productList.menS.length)
-            //               .map<Widget>((e) {
-            //             return GestureDetector(
-            //               onTap: () {
-            //                 _carouselController.animateToPage(e);
-            //               },
-            //               child: Icon(
-            //                 Icons.circle,
-            //                 color: (e == _index)
-            //                     ? Theme.of(context).colorScheme.primary
-            //                     : null,
-            //               ),
-            //             );
-            //           }).toList(),
-            //         ),
-            //       ),
-            //     ),
-            //   );
-            // }),
           ],
         ),
       ),

@@ -1,6 +1,6 @@
 class Products {
   final List<Product> _all = List<Product>.generate(
-    2,
+    22,
     (index) => Product(
       "Jack & Sones",
       "https://github.com/mozaddedalfeshani/bslphotos/raw/main/Ladis_dress_git/Picture-${index + 1}.jpg",

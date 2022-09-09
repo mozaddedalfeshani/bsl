@@ -10,7 +10,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  // final PageController _pageViewController = PageController();
   final List<String> _banners = List<String>.generate(
     2,
     (index) =>
@@ -28,37 +27,6 @@ class _HomeViewState extends State<HomeView> {
                     : constrains.maxHeight * 0.60),
             child: Padding(
               padding: const EdgeInsets.all(10),
-              // child: Stack(
-              //   children: [
-              //     PageView(
-              //       controller: _pageViewController,
-              //       children: [
-              //         Image.asset(
-              //           "assets/garments_picture/basic_front.jpg",
-              //           fit: BoxFit.cover,
-              //         ),
-              //         Image.asset(
-              //           "assets/garments_picture/bonomaya.jpg",
-              //           fit: BoxFit.cover,
-              //         ),
-              //       ],
-              //     ),
-              //     Positioned(
-              //       bottom: 3,
-              //       left: 0,
-              //       right: 0,
-              //       child: Row(
-              //         mainAxisAlignment: MainAxisAlignment.center,
-              //         children: [
-              //           SliderButton(
-              //             totalPages: 2,
-              //             pageViewController: _pageViewController,
-              //           ),
-              //         ],
-              //       ),
-              //     ),
-              //   ],
-              // ),
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxHeight: 300),
                 child: LayoutBuilder(builder: (context, constraints) {
