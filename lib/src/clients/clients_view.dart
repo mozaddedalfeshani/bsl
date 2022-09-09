@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:bsl/src/clients/model.dart';
 import 'package:flutter/material.dart';
 
 class ClientsView extends StatelessWidget {
@@ -13,19 +14,27 @@ class ClientsView extends StatelessWidget {
         crossAxisCount: constrains.maxWidth ~/ 350 + 1,
         mainAxisSpacing: 40,
         crossAxisSpacing: 40,
-        children: const [
-          "zara.jpeg",
-          "mango.jpeg",
-          "john_lewis.png",
-          "tn.png",
-          "D&G.jpeg",
-          "JAJU.png",
-          "P_E.png",
-          "lefties.jpeg",
-        ].map<Widget>((src) {
+        children: [
+          Client(
+            "https://github.com/mozaddedalfeshani/bslphotos/raw/main/brand_logo/zara.png",
+            "Desciption for zara.",
+          ),
+          Client(
+            "https://github.com/mozaddedalfeshani/bslphotos/raw/main/brand_logo/Calliope.png",
+            "Discription for call",
+          ),
+          // "zara.jpeg",
+          // "mango.jpeg",
+          // "john_lewis.png",
+          // "tn.png",
+          // "D&G.jpeg",
+          // "JAJU.png",
+          // "P_E.png",
+          // "lefties.jpeg",
+        ].map<Widget>((each) {
           return AnimatedClientCard(
-            src: src,
-            description: "Short description about this client",
+            src: each.src,
+            description: each.description,
           );
         }).toList(),
       );
@@ -90,37 +99,38 @@ class _AnimatedClientCardState extends State<AnimatedClientCard>
         }
       },
       child: AnimatedBuilder(
-          animation: _rotateAnimation,
-          builder: (context, child) {
-            return Transform(
-              transform: Matrix4.identity()
-                ..setEntry(3, 2, 0.001)
-                ..rotateY(_rotateAnimation.value),
-              alignment: Alignment.center,
-              child: Card(
-                elevation: 20,
-                child: Padding(
-                  padding: const EdgeInsets.all(0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: (_controller.value > 0.5)
-                        ? Transform(
-                            alignment: Alignment.center,
-                            transform: Matrix4.rotationY(pi),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(widget.description),
-                            ),
-                          )
-                        : Image.asset(
-                            "assets/clients_logo/${widget.src}",
-                            fit: BoxFit.contain,
+        animation: _rotateAnimation,
+        builder: (context, child) {
+          return Transform(
+            transform: Matrix4.identity()
+              ..setEntry(3, 2, 0.001)
+              ..rotateY(_rotateAnimation.value),
+            alignment: Alignment.center,
+            child: Card(
+              elevation: 20,
+              child: Padding(
+                padding: const EdgeInsets.all(0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: (_controller.value > 0.5)
+                      ? Transform(
+                          alignment: Alignment.center,
+                          transform: Matrix4.rotationY(pi),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(widget.description),
                           ),
-                  ),
+                        )
+                      : Image.network(
+                          widget.src,
+                          fit: BoxFit.contain,
+                        ),
                 ),
               ),
-            );
-          }),
+            ),
+          );
+        },
+      ),
     );
   }
 }
