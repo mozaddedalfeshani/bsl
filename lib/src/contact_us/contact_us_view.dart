@@ -335,10 +335,6 @@ class AnimatedSendButton extends StatefulWidget {
 class _AnimatedSendButtonState extends State<AnimatedSendButton>
     with SingleTickerProviderStateMixin {
   late final AnimationController _animationController;
-  final SizeTween _tween = SizeTween(
-    begin: const Size(100, 40),
-    end: const Size(55, 55),
-  );
   late final Animation<Size?> _sizeAnimation;
   @override
   void initState() {
@@ -346,8 +342,14 @@ class _AnimatedSendButtonState extends State<AnimatedSendButton>
       duration: const Duration(milliseconds: 400),
       vsync: this,
     );
-    _sizeAnimation = _tween.animate(
-      CurvedAnimation(parent: _animationController, curve: Curves.easeIn),
+    _sizeAnimation = SizeTween(
+      begin: const Size(130, 40),
+      end: const Size(55, 55),
+    ).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeIn,
+      ),
     );
     super.initState();
     _animationController.addListener(() {

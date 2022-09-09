@@ -29,7 +29,7 @@ class _ObjectiveViewState extends State<ObjectiveView>
     ).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: const Interval(0, 0.7),
+        curve: const Interval(0, 1),
       ),
     );
     _profileAnimation = Tween<double>(
@@ -38,7 +38,7 @@ class _ObjectiveViewState extends State<ObjectiveView>
     ).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: const Interval(0.3, 1),
+        curve: const Interval(0, 1),
       ),
     );
     super.initState();
@@ -79,42 +79,40 @@ class _ObjectiveViewState extends State<ObjectiveView>
                     );
                   },
                 ),
+                // offset: const Offset(-25.0, 0),
+                // angle: (pi / 2) * 3,
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: Transform.translate(
-                    offset: const Offset(-25.0, 0),
-                    child: Transform.rotate(
-                      angle: (pi / 2) * 3,
-                      child: Transform.scale(
-                        scale: _objectiveAnimation.value,
-                        child: TextButton(
-                          onPressed: () {
-                            _animationController.reverse();
-                          },
-                          child: const Text(
-                            "Objective",
-                          ),
-                        ),
+                  child: Transform(
+                    alignment: Alignment.center,
+                    transform: Matrix4.identity()
+                      ..scale(_objectiveAnimation.value)
+                      ..translate(-25.0)
+                      ..rotateZ(pi / 2 * 3),
+                    child: TextButton(
+                      onPressed: () {
+                        _animationController.reverse();
+                      },
+                      child: const Text(
+                        "Objective",
                       ),
                     ),
                   ),
                 ),
                 Align(
                   alignment: Alignment.centerRight,
-                  child: Transform.translate(
-                    offset: const Offset(48.0, 0),
-                    child: Transform.rotate(
-                      angle: (pi / 2) * 3,
-                      child: Transform.scale(
-                        scale: _profileAnimation.value,
-                        child: TextButton(
-                          onPressed: () {
-                            _animationController.forward();
-                          },
-                          child: const Text(
-                            "Company Profile",
-                          ),
-                        ),
+                  child: Transform(
+                    alignment: Alignment.center,
+                    transform: Matrix4.identity()
+                      ..scale(_profileAnimation.value)
+                      ..translate(48.0, 0)
+                      ..rotateZ((pi / 2) * 3),
+                    child: TextButton(
+                      onPressed: () {
+                        _animationController.forward();
+                      },
+                      child: const Text(
+                        "Company Profile",
                       ),
                     ),
                   ),
