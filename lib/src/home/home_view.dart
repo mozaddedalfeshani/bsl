@@ -1,3 +1,4 @@
+import 'package:bsl/utils/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +13,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   final List<String> _banners = List<String>.generate(
     2,
-    (index) =>
-        "https://github.com/mozaddedalfeshani/bslphotos/raw/main/factory%20photos/Front-${index + 1}.jpg",
+    (index) => "https://$imageUrl/factory%20photos/Front-${index + 1}.jpg",
   );
   @override
   Widget build(BuildContext context) {

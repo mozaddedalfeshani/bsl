@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:bsl/src/clients/model.dart';
+import 'package:bsl/utils/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -17,11 +18,11 @@ class ClientsView extends StatelessWidget {
         crossAxisSpacing: 40,
         children: [
           Client(
-            "https://github.com/mozaddedalfeshani/bslphotos/raw/main/brand_logo/zara.png",
+            "https://$imageUrl/brand_logo/zara.png",
             "Desciption for zara.",
           ),
           Client(
-            "https://github.com/mozaddedalfeshani/bslphotos/raw/main/brand_logo/Calliope.png",
+            "https://$imageUrl/brand_logo/Calliope.png",
             "Discription for call",
           ),
           // "zara.jpeg",
