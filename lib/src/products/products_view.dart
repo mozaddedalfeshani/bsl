@@ -105,9 +105,18 @@ class ProductCard extends StatelessWidget {
           child: Stack(
             children: [
               Positioned.fill(
-                child: Image.network(
-                  src,
+                child: Image(
+                  // src,
+                  image: NetworkImage(src),
                   fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress != null) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return child;
+                  },
                 ),
               ),
               Positioned(

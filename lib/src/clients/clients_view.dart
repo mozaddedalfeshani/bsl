@@ -121,9 +121,19 @@ class _AnimatedClientCardState extends State<AnimatedClientCard>
                             child: Text(widget.description),
                           ),
                         )
-                      : Image.network(
-                          widget.src,
+                      : Image(
+                          image: NetworkImage(
+                            widget.src,
+                          ),
                           fit: BoxFit.contain,
+                          loadingBuilder: (context, child, loadingProgress) {
+                            if (loadingProgress != null) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }
+                            return child;
+                          },
                         ),
                 ),
               ),
