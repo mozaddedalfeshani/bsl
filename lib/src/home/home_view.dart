@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -10,10 +11,10 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   // final PageController _pageViewController = PageController();
-  final List<String> _banners = const [
-    "assets/garments_picture/basic_front.jpg",
-    "assets/garments_picture/bonomaya.jpg",
-  ];
+  final List<String> _banners = Iterable<int>.generate(2)
+      .map((index) =>
+          "https://github.com/mozaddedalfeshani/bslphotos/raw/main/factory%20photos/Front-${index + 1}.jpg")
+      .toList();
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constrains) {
@@ -74,8 +75,16 @@ class _HomeViewState extends State<HomeView> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(12),
                                 child: SizedBox.expand(
-                                  child: Image.asset(
-                                    e,
+                                  child: CachedNetworkImage(
+                                    imageUrl: e,
+                                    progressIndicatorBuilder:
+                                        (context, url, progress) {
+                                      return Center(
+                                        child: CircularProgressIndicator(
+                                          value: progress.progress,
+                                        ),
+                                      );
+                                    },
                                     fit: BoxFit.cover,
                                   ),
                                 ),

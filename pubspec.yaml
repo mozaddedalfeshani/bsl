@@ -35,6 +35,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   carousel_slider: ^4.1.1
+  cached_network_image: ^3.2.2
 
 dev_dependencies:
   flutter_test:
@@ -59,12 +60,12 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  assets:
-    - assets/
-    - assets/clients_logo/
-    - assets/garments_picture/
-    - assets/background/
-    - assets/shirts/
+  # assets:
+    # - assets/
+    # - assets/clients_logo/
+    # - assets/garments_picture/
+    # - assets/background/
+    # - assets/shirts/
     # - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

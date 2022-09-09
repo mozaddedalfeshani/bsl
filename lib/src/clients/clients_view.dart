@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:bsl/src/clients/model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ClientsView extends StatelessWidget {
@@ -121,18 +122,15 @@ class _AnimatedClientCardState extends State<AnimatedClientCard>
                             child: Text(widget.description),
                           ),
                         )
-                      : Image(
-                          image: NetworkImage(
-                            widget.src,
-                          ),
+                      : CachedNetworkImage(
+                          imageUrl: widget.src,
                           fit: BoxFit.contain,
-                          loadingBuilder: (context, child, loadingProgress) {
-                            if (loadingProgress != null) {
-                              return const Center(
-                                child: CircularProgressIndicator(),
-                              );
-                            }
-                            return child;
+                          progressIndicatorBuilder:
+                              (context, url, downloadProgress) {
+                            return Center(
+                              child: CircularProgressIndicator(
+                                  value: downloadProgress.progress),
+                            );
                           },
                         ),
                 ),

@@ -1,5 +1,6 @@
 // import 'package:bsl/src/products/products_list.dart';
 import 'package:bsl/src/products/products_list.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -105,17 +106,15 @@ class ProductCard extends StatelessWidget {
           child: Stack(
             children: [
               Positioned.fill(
-                child: Image(
+                child: CachedNetworkImage(
                   // src,
-                  image: NetworkImage(src),
+                  imageUrl: src,
                   fit: BoxFit.cover,
-                  loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress != null) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    return child;
+                  progressIndicatorBuilder: (context, url, downloadProgress) {
+                    return Center(
+                        child: CircularProgressIndicator(
+                      value: downloadProgress.progress,
+                    ));
                   },
                 ),
               ),
