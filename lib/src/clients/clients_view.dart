@@ -171,10 +171,12 @@ class _AnimatedClientCardState extends State<AnimatedClientCard>
                           transform: Matrix4.rotationY(pi),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              widget.description,
-                              style: const TextStyle(
-                                color: Colors.black,
+                            child: SingleChildScrollView(
+                              child: Text(
+                                widget.description,
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
                           ),
