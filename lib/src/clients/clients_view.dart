@@ -17,18 +17,63 @@ class ClientsView extends StatelessWidget {
         mainAxisSpacing: 40,
         crossAxisSpacing: 40,
         children: [
+          //#1 position
           Client(
             "https://$imageUrl/brand_logo/zara.png",
             "ZARA is a Spanish multi-national retail clothing chain. It specialises in fast fashion, and sells clothing, accessories, shoes, beauty products and perfumes",
           ),
+          //#2 postion
           Client(
-            "https://$imageUrl/brand_logo/Calliope.png",
+            "https://$imageUrl/brand_logo/Mango.png",
             "Italian multinational clothing-retail company",
           ),
+          //#3 postion
+          // Client(
+          //   "https://$imageUrl/brand_logo/Calliope.png",
+          //   "Italian multinational clothing-retail company",
+          // ),
+          //#4 position
           Client(
             "https://$imageUrl/brand_logo/Terranova.png",
             "Italian multinational clothing-retail company",
           ),
+          // #5 postion
+          Client(
+            "https://$imageUrl/brand_logo/jaju.png",
+            "Italian multinational clothing-retail company",
+          ),
+          // #6 positon
+          Client(
+            "https://$imageUrl/brand_logo/ms.png",
+            "Italian multinational clothing-retail company",
+          ),
+          //#7 position
+          Client(
+            "https://$imageUrl/brand_logo/jaju.png",
+            "Italian multinational clothing-retail company",
+          ),
+
+          //#8 position
+          Client(
+            "https://$imageUrl/brand_logo/HENBURY.png",
+            "Italian multinational clothing-retail company",
+          ),
+          // #9 position
+
+          Client(
+            "https://$imageUrl/brand_logo/PE.png",
+            "Italian multinational clothing-retail company",
+          ),
+
+          // #10 position
+          Client("https://$imageUrl/brand_logo/jl.png", "description"),
+          // #11 position
+          Client("https://$imageUrl/brand_logo/DS.jpeg", "description"),
+          // #12 position
+          Client("https://$imageUrl/brand_logo/engle.png", "description"),
+          // #13 position
+          Client("https://$imageUrl/brand_logo/trutex.jpg", "description"),
+
           // "zara.jpeg",
           // "mango.jpeg",
           // "john_lewis.png",
