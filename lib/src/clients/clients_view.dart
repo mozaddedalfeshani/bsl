@@ -159,6 +159,8 @@ class _AnimatedClientCardState extends State<AnimatedClientCard>
             alignment: Alignment.center,
             child: Card(
               elevation: 20,
+              surfaceTintColor: Colors.white,
+              color: Colors.white,
               child: Padding(
                 padding: const EdgeInsets.all(0),
                 child: ClipRRect(
@@ -169,7 +171,12 @@ class _AnimatedClientCardState extends State<AnimatedClientCard>
                           transform: Matrix4.rotationY(pi),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(widget.description),
+                            child: Text(
+                              widget.description,
+                              style: const TextStyle(
+                                color: Colors.black,
+                              ),
+                            ),
                           ),
                         )
                       : CachedNetworkImage(

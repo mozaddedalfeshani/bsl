@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     _animationController = AnimationController(
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 1000),
       vsync: this,
     );
     _docAnimation = Tween<double>(
@@ -141,9 +141,9 @@ class _HomePageState extends State<HomePage>
                       if (value == _currentIndex) {
                         return;
                       }
-                      _animationController.reverse().then((value) {
-                        _animationController.forward();
-                      });
+                      // _animationController.reverse().then((value) {
+                      //   _animationController.forward();
+                      // });
                       setState(() {
                         _currentIndex = value;
                       });
