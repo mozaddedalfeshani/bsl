@@ -11,143 +11,143 @@ class _ContactUsViewState extends State<ContactUsView> {
   String location = "23.91910270106795, 90.43303905025736";
   @override
   Widget build(BuildContext context) {
-    final List<Widget> profiles = [
-      Padding(
-        padding: const EdgeInsets.all(10),
-        child: IntrinsicHeight(
-          child: Row(
-            children: [
-              Container(
-                width: 2,
-                color: Theme.of(context).colorScheme.onSurface,
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: const [
-                    Icon(
-                      Icons.person,
-                      size: 50,
-                    ),
-                    Text(
-                      "Md. Nurul Islam, FCMA Chairman",
-                      // style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    Text(
-                      "Basic Shirts Limited.",
-                      // style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    Text(
-                      "Phone No:- +88-01775300619",
-                      // style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    Text(
-                      "+88-01190000131",
-                      // style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    Text(
-                      "E-mail: nurulislam@basicshirts.net ",
-                      // style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.all(10),
-        child: IntrinsicHeight(
-          child: Row(
-            children: [
-              Container(
-                width: 2,
-                color: Theme.of(context).colorScheme.onSurface,
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: const [
-                    Icon(
-                      Icons.person,
-                      size: 50,
-                    ),
-                    Text(
-                      "Nurul Haque Mia",
-                      // style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    Text(
-                      "Managing Director",
-                      // style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    Text(
-                      "Basic Shirts Limited.",
-                      // style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    Text(
-                      "Phone No:-+88-01729098851",
-                      // style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    Text(
-                      "E-mail: info@basicshirts.net",
-                      // style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    ];
+    // final List<Widget> profiles = [
+    //   Padding(
+    //     padding: const EdgeInsets.all(10),
+    //     child: IntrinsicHeight(
+    //       child: Row(
+    //         children: [
+    //           Container(
+    //             width: 2,
+    //             color: Theme.of(context).colorScheme.onSurface,
+    //           ),
+    //           const SizedBox(
+    //             width: 10,
+    //           ),
+    //           Expanded(
+    //             child: Column(
+    //               crossAxisAlignment: CrossAxisAlignment.start,
+    //               mainAxisSize: MainAxisSize.min,
+    //               children: const [
+    //                 Icon(
+    //                   Icons.person,
+    //                   size: 50,
+    //                 ),
+    //                 Text(
+    //                   "Md. Nurul Islam, FCMA Chairman",
+    //                   // style: Theme.of(context).textTheme.titleMedium,
+    //                 ),
+    //                 Text(
+    //                   "Basic Shirts Limited.",
+    //                   // style: Theme.of(context).textTheme.titleMedium,
+    //                 ),
+    //                 Text(
+    //                   "Phone No:- +88-01775300619",
+    //                   // style: Theme.of(context).textTheme.titleMedium,
+    //                 ),
+    //                 Text(
+    //                   "+88-01190000131",
+    //                   // style: Theme.of(context).textTheme.titleMedium,
+    //                 ),
+    //                 Text(
+    //                   "E-mail: nurulislam@basicshirts.net ",
+    //                   // style: Theme.of(context).textTheme.titleMedium,
+    //                 ),
+    //               ],
+    //             ),
+    //           ),
+    //         ],
+    //       ),
+    //     ),
+    //   ),
+    //   Padding(
+    //     padding: const EdgeInsets.all(10),
+    //     child: IntrinsicHeight(
+    //       child: Row(
+    //         children: [
+    //           Container(
+    //             width: 2,
+    //             color: Theme.of(context).colorScheme.onSurface,
+    //           ),
+    //           const SizedBox(
+    //             width: 10,
+    //           ),
+    //           Expanded(
+    //             child: Column(
+    //               crossAxisAlignment: CrossAxisAlignment.start,
+    //               mainAxisSize: MainAxisSize.min,
+    //               children: const [
+    //                 Icon(
+    //                   Icons.person,
+    //                   size: 50,
+    //                 ),
+    //                 Text(
+    //                   "Nurul Haque Mia",
+    //                   // style: Theme.of(context).textTheme.titleMedium,
+    //                 ),
+    //                 Text(
+    //                   "Managing Director",
+    //                   // style: Theme.of(context).textTheme.titleMedium,
+    //                 ),
+    //                 Text(
+    //                   "Basic Shirts Limited.",
+    //                   // style: Theme.of(context).textTheme.titleMedium,
+    //                 ),
+    //                 Text(
+    //                   "Phone No:-+88-01729098851",
+    //                   // style: Theme.of(context).textTheme.titleMedium,
+    //                 ),
+    //                 Text(
+    //                   "E-mail: info@basicshirts.net",
+    //                   // style: Theme.of(context).textTheme.titleMedium,
+    //                 ),
+    //               ],
+    //             ),
+    //           ),
+    //         ],
+    //       ),
+    //     ),
+    //   ),
+    // ];
     return Padding(
       padding: const EdgeInsets.all(10),
       child: ListView(
         children: [
-          Text(
-            "Contacts",
-            style: Theme.of(context)
-                .textTheme
-                .displayMedium
-                ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          Text(
-            "For further information and enquiries please contact:",
-            style: Theme.of(context)
-                .textTheme
-                .titleLarge
-                ?.copyWith(fontWeight: FontWeight.bold),
-          ),
-          LayoutBuilder(builder: (context, constraints) {
-            if (constraints.maxWidth >= 600) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Expanded(child: profiles[0]),
-                  Expanded(child: profiles[1]),
-                ],
-              );
-            }
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: profiles,
-            );
-          }),
-          const SizedBox(
-            height: 16,
-          ),
+          // Text(
+          //   "Contacts",
+          //   style: Theme.of(context)
+          //       .textTheme
+          //       .displayMedium
+          //       ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
+          // ),
+          // const SizedBox(
+          //   height: 5,
+          // ),
+          // Text(
+          //   "For further information and enquiries please contact:",
+          //   style: Theme.of(context)
+          //       .textTheme
+          //       .titleLarge
+          //       ?.copyWith(fontWeight: FontWeight.bold),
+          // ),
+          // LayoutBuilder(builder: (context, constraints) {
+          //   if (constraints.maxWidth >= 600) {
+          //     return Row(
+          //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //       children: [
+          //         Expanded(child: profiles[0]),
+          //         Expanded(child: profiles[1]),
+          //       ],
+          //     );
+          //   }
+          //   return Column(
+          //     crossAxisAlignment: CrossAxisAlignment.start,
+          //     children: profiles,
+          //   );
+          // }),
+          // const SizedBox(
+          //   height: 16,
+          // ),
           Text(
             "Address",
             style: Theme.of(context)

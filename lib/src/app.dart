@@ -19,18 +19,14 @@ class _MyAppState extends State<MyApp> {
             debugShowCheckedModeBanner: false,
             themeMode: SettingsController.instance.themeMode,
             theme: ThemeData(
-                useMaterial3: true,
-                colorSchemeSeed: Colors.red,
-                appBarTheme: const AppBarTheme(
-                  centerTitle: true,
-                )),
+              useMaterial3: true,
+              colorSchemeSeed: Colors.red,
+            ),
             darkTheme: ThemeData(
-                useMaterial3: true,
-                colorSchemeSeed: Colors.blue,
-                brightness: Brightness.dark,
-                appBarTheme: const AppBarTheme(
-                  centerTitle: true,
-                )),
+              useMaterial3: true,
+              colorSchemeSeed: Colors.blue,
+              brightness: Brightness.dark,
+            ),
             home: const HomePage(),
           );
         });
