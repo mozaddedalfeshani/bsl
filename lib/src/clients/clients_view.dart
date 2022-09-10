@@ -19,11 +19,15 @@ class ClientsView extends StatelessWidget {
         children: [
           Client(
             "https://$imageUrl/brand_logo/zara.png",
-            "Desciption for zara.",
+            "ZARA is a Spanish multi-national retail clothing chain. It specialises in fast fashion, and sells clothing, accessories, shoes, beauty products and perfumes",
           ),
           Client(
             "https://$imageUrl/brand_logo/Calliope.png",
-            "Discription for call",
+            "Italian multinational clothing-retail company",
+          ),
+          Client(
+            "https://$imageUrl/brand_logo/Terranova.png",
+            "Italian multinational clothing-retail company",
           ),
           // "zara.jpeg",
           // "mango.jpeg",
