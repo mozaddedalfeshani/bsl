@@ -277,6 +277,7 @@ class ContactFormView extends StatefulWidget {
 }
 
 class _ContactFormViewState extends State<ContactFormView> {
+  final GlobalKey<FormState> _form = GlobalKey<FormState>();
   bool change = false;
   @override
   Widget build(BuildContext context) {
@@ -285,69 +286,102 @@ class _ContactFormViewState extends State<ContactFormView> {
       surfaceTintColor: Theme.of(context).colorScheme.surfaceTint,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Text(
-              "Contact Form",
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const TextField(
-              keyboardType: TextInputType.name,
-              textInputAction: TextInputAction.next,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                label: Text("Name"),
+        child: Form(
+          key: _form,
+          child: Column(
+            children: [
+              Text(
+                "Contact Form",
+                style: Theme.of(context).textTheme.titleMedium,
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const TextField(
-              keyboardType: TextInputType.emailAddress,
-              textInputAction: TextInputAction.next,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                label: Text("Email"),
+              const SizedBox(
+                height: 10,
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const SizedBox(
-              height: 300,
-              child: TextField(
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
-                expands: true,
-                textAlignVertical: TextAlignVertical.top,
-                textInputAction: TextInputAction.newline,
-                decoration: InputDecoration(
+              TextFormField(
+                keyboardType: TextInputType.name,
+                textInputAction: TextInputAction.next,
+                validator: (value) {
+                  if (value?.isEmpty ?? true) {
+                    return "Name field is empty.";
+                  }
+                  return null;
+                },
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  alignLabelWithHint: true,
-                  label: Text("Message"),
+                  label: Text("Name"),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const AnimatedSendButton(),
-            // Align(
-            //   alignment: Alignment.centerRight,
-            //   child: ElevatedButton.icon(
-            //     onPressed: () {},
-            //     style: ElevatedButton.styleFrom(
-            //       primary: Theme.of(context).colorScheme.primary,
-            //       onPrimary: Theme.of(context).colorScheme.onPrimary,
-            //     ),
-            //     icon: const Icon(Icons.send),
-            //     label: const Text("Send"),
-            //   ),
-            // ),
-          ],
+              const SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                keyboardType: TextInputType.emailAddress,
+                textInputAction: TextInputAction.next,
+                validator: (value) {
+                  if (value?.trim().isEmpty ?? true) {
+                    return "Email cant be empty.";
+                  }
+                  return null;
+                },
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  label: Text("Email"),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              SizedBox(
+                height: 300,
+                child: TextFormField(
+                  keyboardType: TextInputType.multiline,
+                  maxLines: null,
+                  expands: true,
+                  textAlignVertical: TextAlignVertical.top,
+                  textInputAction: TextInputAction.newline,
+                  validator: (value) {
+                    if (value?.trim().isEmpty ?? true) {
+                      return "message cant be empty.";
+                    }
+                    return null;
+                  },
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    alignLabelWithHint: true,
+                    label: Text("Message"),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              AnimatedSendButton(
+                onPressed: () {
+                  if (!(_form.currentState?.validate() ?? false)) {
+                    return;
+                  }
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text("Not Implemented yet."),
+                      behavior: SnackBarBehavior.floating,
+                    ),
+                  );
+                },
+              ),
+              // Align(
+              //   alignment: Alignment.centerRight,
+              //   child: ElevatedButton.icon(
+              //     onPressed: () {},
+              //     style: ElevatedButton.styleFrom(
+              //       primary: Theme.of(context).colorScheme.primary,
+              //       onPrimary: Theme.of(context).colorScheme.onPrimary,
+              //     ),
+              //     icon: const Icon(Icons.send),
+              //     label: const Text("Send"),
+              //   ),
+              // ),
+            ],
+          ),
         ),
       ),
     );
@@ -355,7 +389,8 @@ class _ContactFormViewState extends State<ContactFormView> {
 }
 
 class AnimatedSendButton extends StatefulWidget {
-  const AnimatedSendButton({super.key});
+  const AnimatedSendButton({super.key, required this.onPressed});
+  final VoidCallback? onPressed;
 
   @override
   State<AnimatedSendButton> createState() => _AnimatedSendButtonState();
@@ -396,6 +431,9 @@ class _AnimatedSendButtonState extends State<AnimatedSendButton>
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
+        if (widget.onPressed != null) {
+          widget.onPressed!();
+        }
         if (_animationController.isCompleted) {
           _animationController.reverse();
         } else {
