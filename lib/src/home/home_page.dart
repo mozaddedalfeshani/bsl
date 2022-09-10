@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     _animationController = AnimationController(
-      duration: const Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 1500),
       vsync: this,
     );
     _docAnimation = Tween<double>(

@@ -1,4 +1,7 @@
+import 'package:bsl/utils/constants.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class ContactUsView extends StatefulWidget {
   const ContactUsView({super.key});
@@ -8,7 +11,6 @@ class ContactUsView extends StatefulWidget {
 }
 
 class _ContactUsViewState extends State<ContactUsView> {
-  String location = "23.91910270106795, 90.43303905025736";
   @override
   Widget build(BuildContext context) {
     // final List<Widget> profiles = [
@@ -224,15 +226,42 @@ class _ContactUsViewState extends State<ContactUsView> {
 
 class LocationMapView extends StatelessWidget {
   const LocationMapView({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 2,
-      surfaceTintColor: Theme.of(context).colorScheme.surfaceTint,
-      color: Theme.of(context).colorScheme.surface,
-      child: const Center(
-        child: Text("Location Map..."),
+    return GestureDetector(
+      onTap: () async {
+        bool launched = await launchUrlString(
+          "https://goo.gl/maps/ChzGLqEQCah3cp77A",
+          // mode: LaunchMode.inAppWebView,
+        );
+        if (!launched) {
+          // ignore: use_build_context_synchronously
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("Cant launched!"),
+            ),
+          );
+        }
+      },
+      child: Card(
+        elevation: 2,
+        surfaceTintColor: Theme.of(context).colorScheme.surfaceTint,
+        color: Theme.of(context).colorScheme.surface,
+        child: Center(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            child: CachedNetworkImage(
+              imageUrl: "https://$imageUrl/maps/location.png",
+              progressIndicatorBuilder: (context, url, progress) {
+                return Center(
+                  child: CircularProgressIndicator(
+                    value: progress.progress,
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
       ),
     );
   }
