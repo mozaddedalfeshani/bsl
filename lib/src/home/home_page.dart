@@ -63,34 +63,39 @@ class _HomePageState extends State<HomePage>
               child: child!,
             );
           },
-          child: AppBar(
-            title: RichText(
-              text: TextSpan(
-                text: "BASIC",
-                children: [
-                  TextSpan(
-                    text: "\nBASIC SHIRTS LTD",
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.onSurface,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: AppBar(
+              centerTitle: false,
+              title: RichText(
+                text: TextSpan(
+                  text: "BASIC",
+                  children: [
+                    TextSpan(
+                      text: "\nBASIC SHIRTS LTD",
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSurface,
+                      ),
                     ),
+                  ],
+                  style: const TextStyle(
+                    color: Colors.red,
+                    fontSize: 22,
                   ),
-                ],
-                style: const TextStyle(
-                  color: Colors.red,
-                  fontSize: 22,
                 ),
               ),
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    SettingsController.instance.toggleTheme();
+                  },
+                  icon:
+                      (SettingsController.instance.themeMode == ThemeMode.dark)
+                          ? const Icon(Icons.dark_mode_outlined)
+                          : const Icon(Icons.wb_sunny_outlined),
+                ),
+              ],
             ),
-            actions: [
-              IconButton(
-                onPressed: () {
-                  SettingsController.instance.toggleTheme();
-                },
-                icon: (SettingsController.instance.themeMode == ThemeMode.dark)
-                    ? const Icon(Icons.dark_mode_outlined)
-                    : const Icon(Icons.wb_sunny_outlined),
-              ),
-            ],
           ),
         ),
       ),
