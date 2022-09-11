@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage>
     ).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Curves.bounceInOut,
+        curve: Curves.bounceOut,
         reverseCurve: Curves.easeIn,
       ),
     );
