@@ -2,6 +2,7 @@ import 'package:bsl/src/products/products_list.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -120,9 +121,9 @@ class ProductCard extends StatelessWidget {
 }
 
 class ProductsSlideView extends StatelessWidget {
-  const ProductsSlideView({super.key, required List<Product> list})
-      : _list = list;
+  ProductsSlideView({super.key, required List<Product> list}) : _list = list;
   final List<Product> _list;
+  final CarouselController _controller = CarouselController();
 
   @override
   Widget build(BuildContext context) {
@@ -138,22 +139,44 @@ class ProductsSlideView extends StatelessWidget {
             Expanded(
               child: LayoutBuilder(
                 builder: (context, constraints) {
-                  return CarouselSlider.builder(
-                    itemCount: _list.length,
-                    options: CarouselOptions(
-                      enlargeCenterPage: true,
-                      enableInfiniteScroll: false,
-                      viewportFraction: (3 / 5) /
-                          (constraints.maxWidth / constraints.maxHeight),
-                      aspectRatio: 3 / 5,
-                      autoPlay: true,
-                    ),
-                    itemBuilder: (context, index, secondIndex) {
-                      return ProductCard(
-                        name: "Product: ${index + 1}/${_list.length}",
-                        src: _list[index].imageSrc,
-                      );
+                  return Listener(
+                    onPointerSignal: (event) {
+                      if (defaultTargetPlatform == TargetPlatform.macOS) {
+                        return;
+                      }
+                      if (event is PointerScrollEvent) {
+                        final double offset = event.scrollDelta.dy;
+                        const int duration = 50;
+
+                        if (offset > 0) {
+                          _controller.nextPage(
+                            duration: const Duration(milliseconds: duration),
+                          );
+                        } else if (offset < 0) {
+                          _controller.previousPage(
+                            duration: const Duration(milliseconds: duration),
+                          );
+                        }
+                      }
                     },
+                    child: CarouselSlider.builder(
+                      carouselController: _controller,
+                      itemCount: _list.length,
+                      options: CarouselOptions(
+                        enlargeCenterPage: true,
+                        enableInfiniteScroll: false,
+                        viewportFraction: (3 / 5) /
+                            (constraints.maxWidth / constraints.maxHeight),
+                        aspectRatio: 3 / 5,
+                        autoPlay: true,
+                      ),
+                      itemBuilder: (context, index, secondIndex) {
+                        return ProductCard(
+                          name: "Product: ${index + 1}/${_list.length}",
+                          src: _list[index].imageSrc,
+                        );
+                      },
+                    ),
                   );
                 },
               ),
