@@ -10,9 +10,9 @@ class Products {
 
   List<Product> get kids => _kids;
   final List<Product> _menS = List<Product>.generate(
-    22, // number = mens number.
+    15, // number = mens number.
     (index) => Product(
-      "https://$imageUrl/Ladis_dress_git/Picture-${index + 1}.jpg",
+      "https://$imageUrl/mens_dress/Picture-${index + 1}.jpg",
     ),
   );
 

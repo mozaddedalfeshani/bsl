@@ -175,7 +175,7 @@ class _ContactUsViewState extends State<ContactUsView> {
                       mainAxisSize: MainAxisSize.min,
                       children: const [
                         Text(
-                          "1) BASIC SHIRTS LTD.",
+                          "BASIC SHIRTS LTD.",
                           // style: Theme.of(context).textTheme.titleMedium,
                         ),
                         Text(
