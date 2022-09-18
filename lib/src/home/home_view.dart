@@ -13,7 +13,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   final List<String> _banners = List<String>.generate(
     2,
-    (index) => "https://$imageUrl/factory%20photos/Front-${index + 1}.jpg",
+    (index) => "https://$imageUrl/factory_photos/Front-${index + 1}.jpg",
   );
   @override
   Widget build(BuildContext context) {
