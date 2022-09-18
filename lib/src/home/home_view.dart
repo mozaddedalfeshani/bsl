@@ -12,7 +12,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   final List<String> _banners = List<String>.generate(
-    2,
+    2, //value=pictures
     (index) => "https://$imageUrl/factory_photos/Front-${index + 1}.jpg",
   );
   @override
