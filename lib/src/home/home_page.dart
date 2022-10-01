@@ -63,11 +63,11 @@ class _HomePageState extends State<HomePage>
               child: child!,
             );
           },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: AppBar(
-              centerTitle: false,
-              title: RichText(
+          child: AppBar(
+            centerTitle: false,
+            title: Padding(
+              padding: const EdgeInsets.all(10),
+              child: RichText(
                 text: TextSpan(
                   text: "BASIC",
                   children: [
@@ -84,18 +84,20 @@ class _HomePageState extends State<HomePage>
                   ),
                 ),
               ),
-              actions: [
-                IconButton(
-                  onPressed: () {
-                    SettingsController.instance.toggleTheme();
-                  },
-                  icon:
-                      (SettingsController.instance.themeMode == ThemeMode.dark)
-                          ? const Icon(Icons.dark_mode_outlined)
-                          : const Icon(Icons.wb_sunny_outlined),
-                ),
-              ],
             ),
+            actions: [
+              IconButton(
+                onPressed: () {
+                  SettingsController.instance.toggleTheme();
+                },
+                icon: (SettingsController.instance.themeMode == ThemeMode.dark)
+                    ? const Icon(Icons.dark_mode_outlined)
+                    : const Icon(Icons.wb_sunny_outlined),
+              ),
+              const SizedBox(
+                width: 10,
+              )
+            ],
           ),
         ),
       ),
