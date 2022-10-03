@@ -61,7 +61,7 @@ class _ProductsViewState extends State<ProductsView> {
                           color: Theme.of(context).colorScheme.inversePrimary,
                           child: SizedBox.expand(
                             child: Image.asset(
-                              products[index].image,
+                              products[index].imageSrc,
                               fit: BoxFit.fill,
                             ),
                           ),
